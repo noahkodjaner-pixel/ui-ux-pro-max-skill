@@ -53,10 +53,16 @@ export interface OpeningDay {
   open: [string, string] | null;
 }
 
+/**
+ * Version « neutre » (build avec VITE_NEUTRAL=1) : même site, sans aucune donnée
+ * identifiant le salon. Les valeurs réelles sont retirées du bundle à la compilation.
+ */
+const NEUTRAL = import.meta.env.VITE_NEUTRAL === '1';
+
 const LISTING_NOTE = 'Relevé sur la fiche Google Maps le 23/11/2026 — à faire valider par le salon.';
 
 export const salon = {
-  name: { value: 'Mod’Hair’N FB', status: 'confirme' } as Field<string>,
+  name: (NEUTRAL ? { value: 'Votre Salon', status: 'demo' } : { value: 'Mod’Hair’N FB', status: 'confirme' }) as Field<string>,
   activity: { value: 'Salon de coiffure', status: 'confirme' } as Field<string>,
   city: { value: 'Wavre', status: 'confirme' } as Field<string>,
   country: { value: 'Belgique', status: 'confirme' } as Field<string>,
@@ -66,8 +72,8 @@ export const salon = {
   postalCode: { value: '1300', status: 'confirme', note: 'Code postal de Wavre.' } as Field<string>,
 
   phone: {
-    value: { display: '+32 479 04 69 69', href: 'tel:+32479046969' },
-    status: 'source-google',
+    value: NEUTRAL ? { display: '', href: '' } : { display: '+32 479 04 69 69', href: 'tel:+32479046969' },
+    status: NEUTRAL ? 'a-confirmer' : 'source-google',
     note: LISTING_NOTE,
   } as Field<{ display: string; href: string }>,
 
@@ -77,10 +83,10 @@ export const salon = {
   bookingUrl: { value: '', status: 'a-confirmer' } as Field<string>,
 
   /** Recherche Google Maps : destination réelle, sans supposer l'adresse. */
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent("Mod'Hair'N FB Wavre"),
+  mapsUrl: NEUTRAL ? '' : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent("Mod'Hair'N FB Wavre"),
 
   hours: {
-    status: 'source-google',
+    status: NEUTRAL ? 'a-confirmer' : 'source-google',
     note: LISTING_NOTE,
     value: [
       { day: 1, label: 'Lundi', open: null },
@@ -95,8 +101,8 @@ export const salon = {
 
   /** Note publique Google (pas un avis rédigé). Mettre status 'a-confirmer' pour la masquer. */
   googleRating: {
-    value: { score: '5,0', count: 107, date: '23/11/2026' },
-    status: 'source-google',
+    value: NEUTRAL ? { score: '', count: 0, date: '' } : { score: '5,0', count: 107, date: '23/11/2026' },
+    status: NEUTRAL ? 'a-confirmer' : 'source-google',
   } as Field<{ score: string; count: number; date: string }>,
 
   instagram: { value: '', status: 'a-confirmer' } as Field<string>,
@@ -149,3 +155,4 @@ export const gallery: Visual[] = [
 ];
 
 export const isShown = (s: Status) => s !== 'a-confirmer';
+

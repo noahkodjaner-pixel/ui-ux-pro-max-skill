@@ -48,9 +48,11 @@ export function Contact() {
               <dd>
                 {salon.street.value && isShown(salon.street.status) ? `${salon.street.value}, ` : ''}{salon.postalCode.value} {salon.city.value}
                 <small>{salon.country.value}{!salon.street.value && ' · adresse exacte communiquée prochainement'}</small>
-                <a className="link" href={salon.mapsUrl} target="_blank" rel="noopener noreferrer">
-                  <MapPin aria-hidden="true" />Ouvrir dans Google Maps<ArrowUpRight aria-hidden="true" />
-                </a>
+                {salon.mapsUrl && (
+                  <a className="link" href={salon.mapsUrl} target="_blank" rel="noopener noreferrer">
+                    <MapPin aria-hidden="true" />Ouvrir dans Google Maps<ArrowUpRight aria-hidden="true" />
+                  </a>
+                )}
               </dd>
             </div>
             {phoneShown && (
@@ -59,7 +61,7 @@ export function Contact() {
                 <dd><a href={salon.phone.value.href}>{salon.phone.value.display}</a></dd>
               </div>
             )}
-            {ratingShown && (
+            {ratingShown && salon.mapsUrl && (
               <a className="rating" href={salon.mapsUrl} target="_blank" rel="noopener noreferrer">
                 <b>{salon.googleRating.value.score}</b>
                 <span>Note moyenne sur Google<br />{salon.googleRating.value.count} avis · relevé le {salon.googleRating.value.date}</span>
@@ -90,7 +92,7 @@ export function Contact() {
             ) : (
               <p>
                 <span className="demo-tag" style={{ marginRight: '.5rem' }}>Démo</span>
-                La réservation en ligne sera connectée à l’outil du salon. En attendant, un simple appel suffit.
+                {booking ? 'La réservation en ligne sera connectée à l’outil du salon. En attendant, un simple appel suffit.' : 'La réservation en ligne et le téléphone du salon prendront place ici.'}
               </p>
             )}
             <div className="book-card__actions">
@@ -99,7 +101,7 @@ export function Contact() {
                   {booking.external ? 'Réserver en ligne' : 'Appeler le salon'}
                 </Btn>
               )}
-              <Btn href={salon.mapsUrl} variant="line" external icon={<MapPin aria-hidden="true" />}>Itinéraire</Btn>
+              {salon.mapsUrl && <Btn href={salon.mapsUrl} variant="line" external icon={<MapPin aria-hidden="true" />}>Itinéraire</Btn>}
             </div>
           </div>
         </div>
