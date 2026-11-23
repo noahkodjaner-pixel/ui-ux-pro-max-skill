@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MODE RNFB — The Art of Transformation
+   MOD’HAIR’N FB — The Art of Transformation
    Direction : studio de beauté contemporain, éditorial, luxe discret.
    ========================================================================== */
 :root {
@@ -152,7 +152,7 @@ ul, ol { list-style: none; }
 .hero__state { display: none; text-align: right; }
 .hero__state-v { position: relative; display: block; height: 1.2em; overflow: clip; margin-top: .4rem; font-family: var(--serif); font-style: italic; font-size: 1.5rem; line-height: 1.2; color: var(--bone); }
 .hero__state-v span { position: absolute; right: 0; top: 0; }
-.hero__title { align-self: end; font-size: clamp(5.2rem, 24vw, 22rem); color: var(--bone); margin-left: -.04em; }
+.hero__title { align-self: end; font-size: clamp(3.4rem, 22vw, 20rem); color: var(--bone); margin-left: -.04em; }
 .hero__title .row { display: flex; overflow: clip; padding-block: .08em .02em; margin-block: -.08em -.02em; }
 .hero__title .row + .row { margin-top: -.14em; }
 .hero__title .ch { display: inline-block; will-change: transform; }
@@ -334,7 +334,7 @@ ul, ol { list-style: none; }
 .footer__top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 2rem; }
 .footer__tag { font-family: var(--serif); font-style: italic; font-size: clamp(1.8rem, 3.4vw, 3rem); line-height: 1.05; color: var(--champagne); max-width: 16ch; }
 .footer__nav { display: flex; flex-wrap: wrap; gap: .8rem 2rem; font-size: .9rem; }
-.footer__mark { margin-top: clamp(40px, 6vw, 80px); font-family: var(--serif); font-size: clamp(4rem, 21.5vw, 24rem); line-height: .8; letter-spacing: -.035em; white-space: nowrap; display: flex; overflow: clip; padding-top: .06em; }
+.footer__mark { margin-top: clamp(40px, 6vw, 80px); font-family: var(--serif); font-size: clamp(2.6rem, 19.5vw, 22rem); line-height: .8; letter-spacing: -.035em; white-space: nowrap; display: flex; overflow: clip; padding-top: .06em; }
 .footer__mark .ch { display: inline-block; }
 .footer__mark i { font-style: italic; }
 .footer__base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .8rem 2rem; margin-top: clamp(20px, 3vw, 36px); padding-top: 1.2rem; border-top: 1px solid var(--line); font-size: .8rem; color: var(--muted); }

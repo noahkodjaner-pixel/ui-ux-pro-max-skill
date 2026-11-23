@@ -56,7 +56,7 @@ export interface OpeningDay {
 const LISTING_NOTE = 'Relevé sur la fiche Google Maps le 23/11/2026 — à faire valider par le salon.';
 
 export const salon = {
-  name: { value: 'Mode RNFB', status: 'confirme' } as Field<string>,
+  name: { value: 'Mod’Hair’N FB', status: 'confirme' } as Field<string>,
   activity: { value: 'Salon de coiffure', status: 'confirme' } as Field<string>,
   city: { value: 'Wavre', status: 'confirme' } as Field<string>,
   country: { value: 'Belgique', status: 'confirme' } as Field<string>,
@@ -77,7 +77,7 @@ export const salon = {
   bookingUrl: { value: '', status: 'a-confirmer' } as Field<string>,
 
   /** Recherche Google Maps : destination réelle, sans supposer l'adresse. */
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Mode RNFB Wavre'),
+  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent("Mod'Hair'N FB Wavre"),
 
   hours: {
     status: 'source-google',

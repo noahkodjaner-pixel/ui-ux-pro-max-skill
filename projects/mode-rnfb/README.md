@@ -1,11 +1,11 @@
-# Mode RNFB · site de démonstration (v2)
+# Mod’Hair’N FB · site de démonstration (v2)
 
 **The Art of Transformation.** Démo commerciale pour un salon de coiffure à Wavre.
 React 19 + TypeScript + Vite, GSAP (ScrollTrigger, SplitText), Three.js.
 
 ## Phase 1 · analyse
 
-**Confirmé :** nom (Mode RNFB), activité (salon de coiffure), ville (Wavre, Belgique).
+**Confirmé :** nom (Mod’Hair’N FB, tel qu'affiché sur la fiche Google ; le brief initial disait « Mode RNFB »), activité (salon de coiffure), ville (Wavre, Belgique).
 
 **Relevé sur la fiche Google Maps, à faire valider par le salon** (`status: 'source-google'`) :
 téléphone +32 479 04 69 69, horaires (lundi fermé, du mardi au dimanche 9h–18h30), note 5,0 sur 107 avis.
