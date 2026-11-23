@@ -156,6 +156,7 @@ h2 em, h1 em { font-style: italic; color: var(--gold); }
 .mobile-nav[hidden] { display: none; }
 .mobile-nav a { font-family: var(--serif); font-size: 2.4rem; line-height: 1.25; text-decoration: none; padding-block: 6px; border-bottom: 1px solid var(--line); }
 .mobile-nav .btn { margin-top: 24px; font-family: var(--sans); font-size: 1rem; border-bottom: 0; }
+@media (max-width: 359px) { .menu-btn > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } }
 @media (min-width: 640px) { .header__tel { display: inline-flex; } }
 @media (min-width: 1040px) {
   .nav, .header__cta { display: flex; }
