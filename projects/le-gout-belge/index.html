@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Goût Belge — Cuisine belge à Bruxelles</title>
+<meta name="description" content="Le Goût Belge, restaurant de cuisine belge à Bruxelles : carbonnade, moules-frites, gaufres et bières belges. Réservation au +32 472 71 72 60.">
+<meta name="theme-color" content="#0A0806">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Manrope:wght@400;500;600;700&display=swap">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ==========================================================================
+   Le Goût Belge — édition cinéma
+   Fichier unique : styles + scripts inclus. Aucune dépendance.
+   Pour brancher de vrais visuels : déposer les images dans ./assets/ (voir
+   les attributs src des balises <img class="chapter__img">) et, pour l'accueil,
+   renseigner HERO_VIDEO dans le script (vidéo pilotée par le défilement).
+   ========================================================================== */
+:root {
+  --black: #0A0806;
+  --black-2: #14100C;
+  --cream: #F3EAD8;
+  --cream-2: #CDBFA6;
+  --muted: #8F826E;
+  --gold: #E2B356;
+  --gold-2: #F6D58E;
+  --amber: #C47A1E;
+  --line: rgba(243, 234, 216, .12);
+  --serif: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --ease-io: cubic-bezier(.65, 0, .35, 1);
+  --gutter: clamp(18px, 4.5vw, 64px);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: clip; -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
+body { background: var(--black); color: var(--cream); font: 400 1rem/1.65 var(--sans); overflow-x: clip; -webkit-font-smoothing: antialiased; }
+img, svg, canvas, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+::selection { background: var(--gold); color: var(--black); }
+:focus-visible { outline: 1.5px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+.skip { position: absolute; left: 16px; top: -80px; z-index: 200; background: var(--gold); color: var(--black); padding: .7rem 1rem; font-weight: 600; }
+.skip:focus { top: 12px; }
+.sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: 100%; max-width: 1400px; margin-inline: auto; padding-inline: var(--gutter); }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: .98; letter-spacing: -.02em; }
+em { font-style: italic; }
+.gold { color: var(--gold); }
+.kicker { display: inline-flex; align-items: center; gap: .8rem; font-size: .72rem; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); }
+.kicker::before { content: ""; width: 26px; height: 1px; background: currentColor; }
+
+/* ---------- Boutons ---------- */
+.btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: .8rem; min-height: 54px; padding: 0 1.7rem; border-radius: 999px; font-weight: 600; font-size: .92rem; letter-spacing: .02em; white-space: nowrap; overflow: hidden; isolation: isolate; transition: color .5s var(--ease), border-color .5s; }
+.btn svg { width: 18px; height: 18px; flex: none; transition: transform .6s var(--ease); }
+.btn:hover svg { transform: translateX(4px); }
+.btn--gold { background: linear-gradient(180deg, var(--gold-2), var(--gold)); color: var(--black); box-shadow: 0 10px 40px -12px rgba(226, 179, 86, .6), inset 0 1px 0 rgba(255,255,255,.5); }
+.btn--gold::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); transform: translateX(-120%); transition: transform .9s var(--ease); }
+.btn--gold:hover::after { transform: translateX(120%); }
+.btn--ghost { border: 1px solid rgba(243,234,216,.28); color: var(--cream); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(10,8,6,.25); }
+.btn--ghost:hover { border-color: var(--gold); color: var(--gold-2); }
+
+/* ---------- Nav ---------- */
+.nav { position: fixed; inset: 0 0 auto; z-index: 60; transition: transform .7s var(--ease), background-color .5s, border-color .5s; border-bottom: 1px solid transparent; }
+.nav__row { height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.nav.is-solid { background: rgba(10,8,6,.72); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); border-color: var(--line); }
+.nav.is-hidden { transform: translateY(-100%); }
+.brand { font-family: var(--serif); font-size: 1.35rem; letter-spacing: -.01em; display: inline-flex; align-items: center; gap: .55rem; }
+.brand i { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 12px var(--gold); }
+.nav__links { display: flex; gap: 2.2rem; list-style: none; font-size: .86rem; letter-spacing: .04em; }
+.nav__links a { color: var(--cream-2); position: relative; padding: .4rem 0; transition: color .3s; }
+.nav__links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: right; transition: transform .6s var(--ease); }
+.nav__links a:hover, .nav__links a[aria-current="true"] { color: var(--cream); }
+.nav__links a:hover::after, .nav__links a[aria-current="true"]::after { transform: scaleX(1); transform-origin: left; }
+.nav .btn { min-height: 44px; padding: 0 1.2rem; font-size: .84rem; }
+.burger { display: none; width: 44px; height: 44px; position: relative; }
+.burger span { position: absolute; left: 12px; right: 12px; height: 1.5px; background: currentColor; transition: transform .5s var(--ease); }
+.burger span:first-child { top: 18px; } .burger span:last-child { top: 25px; }
+.burger[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+.burger[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+.drawer { position: fixed; inset: 0; z-index: 55; background: var(--black); display: flex; flex-direction: column; justify-content: flex-end; padding: 110px var(--gutter) calc(32px + env(safe-area-inset-bottom)); clip-path: circle(0 at calc(100% - 42px) 40px); visibility: hidden; transition: clip-path .9s var(--ease-io), visibility 0s .9s; }
+.drawer.is-open { clip-path: circle(150% at calc(100% - 42px) 40px); visibility: visible; transition: clip-path .9s var(--ease-io); }
+.drawer ul { list-style: none; }
+.drawer li { overflow: hidden; }
+.drawer li a { display: block; font-family: var(--serif); font-size: clamp(2.4rem, 11vw, 3.6rem); line-height: 1.12; transform: translateY(110%); transition: transform .9s var(--ease); }
+.drawer.is-open li a { transform: none; transition-delay: calc(.2s + var(--i) * .06s); }
+.drawer__foot { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; color: var(--muted); font-size: .9rem; }
+
+/* ---------- Poussière dorée (fond global) ---------- */
+#dust { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .7; }
+main, footer { position: relative; z-index: 1; }
+
+/* ---------- Hero piloté par le scroll ---------- */
+.hero { position: relative; height: 360vh; }
+.hero__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.hero__canvas, .hero__video { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero__video { object-fit: cover; opacity: 0; }
+.hero.has-video .hero__video { opacity: 1; }
+.hero.has-video .hero__canvas { display: none; }
+.hero__word { position: absolute; left: 0; right: 0; top: 50%; transform: translate3d(var(--wx, 0), -50%, 0); white-space: nowrap; font-family: var(--serif); font-size: clamp(6rem, 24vw, 26rem); line-height: 1; letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1px rgba(226,179,86,.22); text-align: center; pointer-events: none; user-select: none; }
+.hero__vignette { position: absolute; inset: 0; background: radial-gradient(120% 90% at 60% 50%, transparent 40%, rgba(10,8,6,.85) 100%), linear-gradient(180deg, rgba(10,8,6,.6), transparent 22%, transparent 70%, rgba(10,8,6,.95)); pointer-events: none; }
+.hero__copy { position: absolute; inset: 0; pointer-events: none; }
+.scene { position: absolute; left: var(--gutter); top: 50%; transform: translateY(-50%); max-width: min(620px, 48vw); opacity: 0; visibility: hidden; transition: opacity .8s var(--ease), visibility 0s .8s; pointer-events: auto; }
+.scene.is-active { opacity: 1; visibility: visible; transition: opacity .8s var(--ease); }
+.scene h1, .scene h2 { font-size: clamp(3.2rem, 8.4vw, 8.2rem); margin: 1.4rem 0 1.6rem; text-shadow: 0 10px 60px rgba(0,0,0,.6); }
+.scene .line { display: block; overflow: hidden; padding-bottom: .06em; }
+.scene .line > span { display: block; transform: translateY(110%); transition: transform 1.2s var(--ease); }
+.scene.is-active .line > span { transform: none; }
+.scene.is-active .line:nth-child(2) > span { transition-delay: .08s; }
+.scene p { color: var(--cream-2); font-size: clamp(1rem, 1.3vw, 1.15rem); max-width: 40ch; opacity: 0; transform: translateY(14px); transition: opacity 1s .25s var(--ease), transform 1s .25s var(--ease); }
+.scene.is-active p, .scene.is-active .scene__cta { opacity: 1; transform: none; }
+.scene__cta { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem; opacity: 0; transform: translateY(14px); transition: opacity 1s .4s var(--ease), transform 1s .4s var(--ease); }
+.hero__ui { position: absolute; left: var(--gutter); right: var(--gutter); bottom: calc(28px + env(safe-area-inset-bottom)); display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: .78rem; color: var(--cream-2); }
+.hero__progress { flex: 1; max-width: 240px; height: 1px; background: var(--line); position: relative; overflow: hidden; }
+.hero__progress i { position: absolute; inset: 0; background: var(--gold); transform-origin: left; transform: scaleX(var(--p, 0)); }
+.hero__rating { display: flex; align-items: center; gap: .6rem; font-size: .88rem; }
+.hero__rating b { color: var(--cream); font-weight: 600; }
+.stars { color: var(--gold); letter-spacing: 2px; }
+
+/* ---------- Bandeau ---------- */
+.ticker { position: relative; z-index: 1; border-block: 1px solid var(--line); padding: 1.1rem 0; overflow: hidden; background: var(--black); }
+.ticker__track { display: flex; width: max-content; animation: tick 40s linear infinite; }
+.ticker span { font-family: var(--serif); font-style: italic; font-size: clamp(1.3rem, 2.4vw, 2rem); padding: 0 2rem; display: inline-flex; align-items: center; gap: 4rem; white-space: nowrap; color: var(--cream-2); }
+.ticker span::after { content: "✦"; font-style: normal; font-size: .8rem; color: var(--gold); }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* ---------- Chapitres (sticky, pilotés par --p) ---------- */
+.chapter { position: relative; height: 240vh; }
+.chapter__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.chapter__glow { position: absolute; width: 90vmin; height: 90vmin; left: 50%; top: 50%; transform: translate(-30%, -50%) scale(calc(.7 + var(--p, 0) * .5)); border-radius: 50%; background: radial-gradient(circle, rgba(226,179,86,.28), rgba(196,122,30,.08) 45%, transparent 70%); filter: blur(10px); opacity: calc(.3 + var(--p, 0) * .7); }
+.chapter__word { position: absolute; top: 50%; left: 0; white-space: nowrap; font-family: var(--serif); font-size: clamp(5.5rem, 21vw, 22rem); line-height: 1; letter-spacing: -.05em; transform: translate3d(calc(10vw - var(--p, 0) * 60vw), -50%, 0); color: rgba(243,234,216,.06); pointer-events: none; user-select: none; }
+.chapter__word em { color: transparent; -webkit-text-stroke: 1px rgba(226,179,86,.35); }
+.chapter__inner { position: relative; width: 100%; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+.chapter__text { opacity: clamp(0, calc((var(--p, 0) - .12) * 6), 1); transform: translateY(calc((1 - clamp(0, calc((var(--p, 0) - .12) * 4), 1)) * 40px)); }
+.chapter__num { font-family: var(--serif); font-style: italic; font-size: clamp(3rem, 6vw, 5.5rem); color: var(--gold); line-height: 1; }
+.chapter__text h2 { font-size: clamp(2.6rem, 5.6vw, 5.4rem); margin: .8rem 0 1.4rem; }
+.chapter__text p { color: var(--cream-2); max-width: 38ch; font-size: 1.05rem; }
+.chapter__meta { display: flex; gap: 1.6rem; margin-top: 2rem; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--muted); letter-spacing: .06em; }
+.chapter__meta b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.6rem; color: var(--cream); letter-spacing: 0; }
+.chapter__visual { position: relative; aspect-ratio: 16 / 10; transform: perspective(1200px) rotateY(calc((.5 - var(--p, 0)) * 14deg)) scale(calc(.82 + var(--p, 0) * .24)); }
+.chapter__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 6px; -webkit-mask-image: radial-gradient(85% 85% at 60% 50%, #000 55%, transparent 100%); mask-image: radial-gradient(85% 85% at 60% 50%, #000 55%, transparent 100%); }
+.chapter__visual.is-empty .chapter__img { display: none; }
+.chapter__art { position: absolute; inset: 0; display: none; }
+.chapter__visual.is-empty .chapter__art { display: block; }
+.chapter__art svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 6px rgba(226,179,86,.55)) drop-shadow(0 0 28px rgba(226,179,86,.25)); }
+.art { fill: none; stroke: var(--gold-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - clamp(0, calc((var(--p, 0) - .05) * 2.2), 1)); }
+.art--soft { stroke: var(--gold); opacity: .55; }
+.spark { fill: var(--gold-2); opacity: clamp(0, calc((var(--p, 0) - .4) * 3), 1); }
+.float { animation: float 6s var(--ease-io) infinite alternate; transform-box: fill-box; transform-origin: center; }
+.float:nth-of-type(2n) { animation-duration: 7.5s; animation-delay: -2s; }
+.float:nth-of-type(3n) { animation-duration: 5.2s; animation-delay: -3.5s; }
+@keyframes float { from { transform: translateY(-6px) rotate(-4deg); } to { transform: translateY(8px) rotate(5deg); } }
+
+/* ---------- Sections classiques ---------- */
+.section { position: relative; padding: clamp(100px, 14vw, 190px) 0; }
+.head { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 4rem; align-items: end; margin-bottom: clamp(48px, 7vw, 96px); }
+.head h2 { font-size: clamp(2.8rem, 6.4vw, 6rem); margin-top: 1.2rem; }
+.head p { color: var(--cream-2); max-width: 42ch; justify-self: end; }
+.js .reveal { opacity: 0; transform: translateY(36px); transition: opacity 1.1s var(--ease), transform 1.2s var(--ease); transition-delay: calc(var(--i, 0) * 90ms); }
+.js .reveal.is-in { opacity: 1; transform: none; }
+
+/* Carte */
+.tabs { position: relative; display: inline-flex; gap: .3rem; padding: .3rem; border: 1px solid var(--line); border-radius: 999px; margin-bottom: 2.6rem; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { position: relative; z-index: 1; padding: .7rem 1.4rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: var(--cream-2); transition: color .4s; white-space: nowrap; }
+.tab[aria-selected="true"] { color: var(--black); }
+.tabs__pill { position: absolute; top: .3rem; bottom: .3rem; left: 0; border-radius: 999px; background: linear-gradient(180deg, var(--gold-2), var(--gold)); transition: transform .6s var(--ease), width .6s var(--ease); }
+.panel { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 6vw, 110px); }
+.panel[hidden] { display: none; }
+.panel.is-entering .dish { animation: dishIn .8s var(--ease) both; animation-delay: calc(var(--i) * 55ms); }
+@keyframes dishIn { from { opacity: 0; transform: translateY(18px); } }
+.dish { display: grid; grid-template-columns: 1fr auto; gap: .35rem 1.2rem; padding: 1.6rem 0; border-bottom: 1px solid var(--line); position: relative; }
+.dish::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .9s var(--ease); }
+.dish:hover::after { transform: scaleX(1); }
+.dish h3 { font-size: 1.55rem; letter-spacing: -.01em; transition: color .3s, transform .6s var(--ease); }
+.dish:hover h3 { color: var(--gold-2); transform: translateX(6px); }
+.dish__price { font-family: var(--serif); font-size: 1.35rem; color: var(--gold); }
+.dish p { grid-column: 1 / -1; color: var(--muted); font-size: .95rem; max-width: 46ch; }
+.tag { font-family: var(--sans); font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(226,179,86,.4); border-radius: 999px; padding: .18rem .55rem; margin-left: .7rem; vertical-align: .35em; }
+.note { margin-top: 2rem; font-size: .82rem; color: var(--muted); }
+
+/* Bières */
+.beers { list-style: none; border-top: 1px solid var(--line); }
+.beer { display: grid; grid-template-columns: 4.5rem 1fr auto; align-items: baseline; gap: 1.5rem; padding: 1.8rem 0; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+.beer::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(226,179,86,.14), transparent 70%); transform: translateX(-101%); transition: transform 1s var(--ease); }
+.beer:hover::before { transform: none; }
+.beer > * { position: relative; }
+.beer__n { font-family: var(--serif); font-style: italic; color: var(--muted); }
+.beer__name { font-family: var(--serif); font-size: clamp(2rem, 5vw, 4.2rem); line-height: 1; letter-spacing: -.03em; transition: transform .8s var(--ease), color .4s; }
+.beer:hover .beer__name { transform: translateX(14px); color: var(--gold-2); }
+.beer__type { color: var(--cream-2); font-size: .9rem; text-align: right; }
+
+/* Avis */
+.quote { max-width: 1100px; margin: 0 auto; text-align: center; }
+.quote__big { font-family: var(--serif); font-size: clamp(6rem, 16vw, 13rem); line-height: .9; letter-spacing: -.05em; background: linear-gradient(180deg, var(--gold-2), var(--amber)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.quote__sub { margin-top: 1rem; color: var(--cream-2); letter-spacing: .14em; text-transform: uppercase; font-size: .8rem; }
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: clamp(48px, 7vw, 96px); text-align: left; }
+.review { padding: 2rem; border: 1px solid var(--line); border-radius: 6px; background: linear-gradient(180deg, rgba(243,234,216,.035), transparent); transition: border-color .5s, transform .8s var(--ease); }
+.review:hover { border-color: rgba(226,179,86,.45); transform: translateY(-6px); }
+.review blockquote { font-family: var(--serif); font-size: 1.3rem; line-height: 1.4; }
+.review footer { margin-top: 1.6rem; display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); }
+
+/* Réservation */
+.book { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+.book h2 { font-size: clamp(3rem, 7vw, 6.6rem); margin: 1.2rem 0 2rem; }
+.book__phone { font-family: var(--serif); font-size: clamp(2rem, 4.4vw, 3.6rem); display: inline-block; position: relative; }
+.book__phone::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--gold); transform: scaleX(.25); transform-origin: left; transition: transform .8s var(--ease); }
+.book__phone:hover::after { transform: scaleX(1); }
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; padding: clamp(24px, 3vw, 40px); border: 1px solid var(--line); border-radius: 8px; background: rgba(20,16,12,.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.field { display: grid; gap: .45rem; }
+.field--full { grid-column: 1 / -1; }
+.field label { font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.field input, .field select { height: 54px; padding: 0 1rem; background: var(--black); border: 1px solid var(--line); border-radius: 6px; color: var(--cream); appearance: none; -webkit-appearance: none; width: 100%; transition: border-color .3s, box-shadow .3s; color-scheme: dark; }
+.field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23E2B356' stroke-width='1.5'%3E%3Cpath d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.6rem; }
+.field input:focus, .field select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(226,179,86,.18); }
+.field[data-invalid] input { border-color: #D9634F; }
+.err { font-size: .8rem; color: #E88A78; }
+.form .btn { grid-column: 1 / -1; }
+.form small { grid-column: 1 / -1; color: var(--muted); font-size: .8rem; }
+.infos { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 64px); margin-top: clamp(64px, 9vw, 120px); }
+.infos h3 { font-family: var(--sans); font-size: .72rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+.hours { list-style: none; }
+.hours li { display: flex; justify-content: space-between; padding: .55rem 0; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; color: var(--cream-2); font-size: .95rem; }
+.hours li[aria-current="date"] { color: var(--gold-2); font-weight: 600; }
+.status { display: inline-flex; align-items: center; gap: .55rem; font-size: .85rem; padding: .4rem .9rem; border: 1px solid var(--line); border-radius: 999px; margin-bottom: 1.1rem; }
+.status i { width: 7px; height: 7px; border-radius: 50%; background: #67C27A; box-shadow: 0 0 10px #67C27A; }
+.status.is-closed i { background: #D9634F; box-shadow: none; }
+
+/* Footer */
+.footer { padding: clamp(80px, 12vw, 160px) 0 calc(36px + env(safe-area-inset-bottom)); overflow: hidden; border-top: 1px solid var(--line); }
+.footer__big { font-family: var(--serif); font-size: clamp(3.6rem, 15.5vw, 16rem); line-height: .88; letter-spacing: -.05em; white-space: nowrap; }
+.footer__big em { color: transparent; -webkit-text-stroke: 1px var(--gold); }
+.footer__row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--muted); }
+
+.callbar { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 50; display: none; transform: translateY(160%); transition: transform .7s var(--ease); }
+.callbar.is-visible { transform: none; }
+.callbar .btn { width: 100%; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .nav__links, .nav .btn { display: none; }
+  .burger { display: block; }
+  .head, .book { grid-template-columns: 1fr; }
+  .head p { justify-self: start; }
+  .reviews { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .hero { height: 300vh; }
+  .scene { left: var(--gutter); right: var(--gutter); max-width: none; top: auto; bottom: 100px; transform: none; }
+  .scene h1, .scene h2 { font-size: clamp(2.9rem, 13vw, 4.2rem); margin: 1rem 0 1rem; }
+  .scene__cta .btn { flex: 1 1 100%; }
+  .hero__word { top: 34%; }
+  .chapter { height: 200vh; }
+  .chapter__stage { place-items: start center; padding-top: 92px; }
+  .chapter__inner { grid-template-columns: 1fr; gap: 8px; }
+  .chapter__visual { order: -1; aspect-ratio: 4 / 3; }
+  .chapter__text h2 { margin: .4rem 0 .8rem; }
+  .chapter__meta { margin-top: 1.2rem; padding-top: 1rem; }
+  .chapter__word { top: 30%; }
+  .chapter__glow { transform: translate(-50%, -70%) scale(calc(.7 + var(--p, 0) * .5)); }
+  .panel { grid-template-columns: 1fr; }
+  .beer { grid-template-columns: 2.4rem 1fr; row-gap: .3rem; }
+  .beer__type { grid-column: 2; text-align: left; }
+  .form { grid-template-columns: 1fr; }
+  .infos { grid-template-columns: 1fr; }
+  .callbar { display: block; }
+  .footer { padding-bottom: 110px; }
+  .hero__rating .long { display: none; }
+}
+
+/* ---------- Mouvement réduit : tout est lisible, rien n'est épinglé ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  .hero { height: auto; }
+  .hero__stage { position: relative; height: 100svh; }
+  .chapter { height: auto; }
+  .chapter__stage { position: relative; height: auto; min-height: 100svh; padding-block: 80px; }
+  .art { stroke-dashoffset: 0; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"Le Goût Belge","servesCuisine":"Belge","telephone":"+32472717260","address":{"@type":"PostalAddress","addressLocality":"Bruxelles","addressCountry":"BE"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.3","reviewCount":"640"}}
+</script>
+</head>
+<body>
+<a class="skip" href="#carte">Aller à la carte</a>
+<canvas id="dust" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__row">
+    <a class="brand" href="#top" aria-label="Le Goût Belge — accueil">Le Goût <em>Belge</em><i aria-hidden="true"></i></a>
+    <nav aria-label="Navigation principale">
+      <ul class="nav__links">
+        <li><a href="#chapitres">Incontournables</a></li>
+        <li><a href="#carte">La carte</a></li>
+        <li><a href="#bieres">Bières</a></li>
+        <li><a href="#avis">Avis</a></li>
+        <li><a href="#reserver">Infos</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--gold" href="#reserver">Réserver</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Ouvrir le menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <ul>
+    <li><a href="#chapitres" style="--i:0">Incontournables</a></li>
+    <li><a href="#carte" style="--i:1">La carte</a></li>
+    <li><a href="#bieres" style="--i:2">Bières</a></li>
+    <li><a href="#avis" style="--i:3">Avis</a></li>
+    <li><a href="#reserver" style="--i:4"><em class="gold">Réserver</em></a></li>
+  </ul>
+  <div class="drawer__foot"><a href="tel:+32472717260">+32 472 71 72 60</a><span>Bruxelles</span></div>
+</div>
+
+<main id="top">
+  <!-- ================= HERO : la bière se verse au rythme du scroll ================= -->
+  <section class="hero" id="hero" aria-label="Accueil">
+    <div class="hero__stage">
+      <div class="hero__word" aria-hidden="true">Bruxelles</div>
+      <canvas class="hero__canvas" aria-hidden="true"></canvas>
+      <video class="hero__video" muted playsinline preload="auto" aria-hidden="true"></video>
+      <div class="hero__vignette" aria-hidden="true"></div>
+
+      <div class="hero__copy">
+        <div class="scene is-active" data-scene="0">
+          <span class="kicker">Restaurant · Bruxelles</span>
+          <h1><span class="line"><span>Le goût</span></span><span class="line"><span>de chez <em class="gold">nous.</em></span></span></h1>
+          <p>La cuisine belge, généreuse et sincère. Faites défiler&nbsp;: on vous sert.</p>
+        </div>
+        <div class="scene" data-scene="1" aria-hidden="true">
+          <span class="kicker">À la pression</span>
+          <h2><span class="line"><span>Versée</span></span><span class="line"><span><em class="gold">lentement.</em></span></span></h2>
+          <p>Abbayes, trappistes, lambics bruxellois&nbsp;: chaque bière est servie dans son verre.</p>
+        </div>
+        <div class="scene" data-scene="2" aria-hidden="true">
+          <span class="kicker">On vous attend</span>
+          <h2><span class="line"><span>À table,</span></span><span class="line"><span><em class="gold">Bruxelles.</em></span></span></h2>
+          <div class="scene__cta">
+            <a class="btn btn--gold" href="#reserver">Réserver une table <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn--ghost" href="#carte">Voir la carte</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__ui">
+        <div class="hero__rating"><span class="stars" aria-hidden="true">★★★★★</span><span><b>4,3/5</b> <span class="long">· 640 avis Google</span></span></div>
+        <div class="hero__progress" aria-hidden="true"><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="ticker__track">
+    <span>Carbonnade flamande</span><span>Moules-frites</span><span>Vol-au-vent</span><span>Gaufre de Liège</span><span>Bières d’abbaye</span><span>Stoemp</span>
+    <span>Carbonnade flamande</span><span>Moules-frites</span><span>Vol-au-vent</span><span>Gaufre de Liège</span><span>Bières d’abbaye</span><span>Stoemp</span>
+  </div></div>
+
+  <!-- ================= CHAPITRES ================= -->
+  <div id="chapitres">
+    <section class="chapter" aria-labelledby="ch1">
+      <div class="chapter__stage">
+        <div class="chapter__glow" aria-hidden="true"></div>
+        <div class="chapter__word" aria-hidden="true">Carbon<em>nade</em></div>
+        <div class="wrap chapter__inner">
+          <div class="chapter__text">
+            <span class="chapter__num">#01</span>
+            <h2 id="ch1">Mijotée <em class="gold">des heures.</em></h2>
+            <p>Le bœuf fond doucement dans la bière brune, le pain d’épices et la moutarde. Servie avec des frites fraîches.</p>
+            <div class="chapter__meta"><span><b>21 €</b>Carbonnade</span><span><b>Maison</b>Recette</span></div>
+          </div>
+          <figure class="chapter__visual">
+            <img class="chapter__img" src="assets/carbonnade.jpg" alt="Cocotte de carbonnade flamande fumante">
+            <div class="chapter__art" aria-hidden="true">
+              <svg viewBox="0 0 600 380">
+                <g class="float"><path class="art" pathLength="1" d="M250 120 C 236 96 266 82 250 54"/></g>
+                <g class="float"><path class="art" pathLength="1" d="M300 108 C 286 84 316 70 300 40"/></g>
+                <g class="float"><path class="art" pathLength="1" d="M350 120 C 336 96 366 82 350 54"/></g>
+                <ellipse class="art" pathLength="1" cx="300" cy="170" rx="150" ry="28"/>
+                <path class="art" pathLength="1" d="M152 172 L168 290 C 174 326 426 326 432 290 L448 172"/>
+                <path class="art" pathLength="1" d="M154 186 C 116 184 116 226 160 222"/>
+                <path class="art" pathLength="1" d="M446 186 C 484 184 484 226 440 222"/>
+                <path class="art art--soft" pathLength="1" d="M190 170 C 214 152 236 182 262 164 C 286 150 308 182 336 164 C 360 150 386 178 410 166"/>
+                <ellipse class="art art--soft" pathLength="1" cx="300" cy="345" rx="210" ry="14"/>
+                <g class="float"><circle class="art art--soft" pathLength="1" cx="96" cy="110" r="22"/><circle class="art art--soft" pathLength="1" cx="96" cy="110" r="12"/></g>
+                <g class="float"><path class="art art--soft" pathLength="1" d="M500 90 C 530 70 560 96 540 120 C 520 138 492 120 500 90 Z"/></g>
+                <g class="float"><rect class="art art--soft" pathLength="1" x="488" y="250" width="56" height="34" rx="4" transform="rotate(-14 516 267)"/></g>
+                <circle class="spark" cx="70" cy="240" r="2.5"/><circle class="spark" cx="540" cy="200" r="2"/><circle class="spark" cx="200" cy="40" r="2"/><circle class="spark" cx="430" cy="60" r="2.5"/>
+              </svg>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="ch2">
+      <div class="chapter__stage">
+        <div class="chapter__glow" aria-hidden="true"></div>
+        <div class="chapter__word" aria-hidden="true">Moules<em>-frites</em></div>
+        <div class="wrap chapter__inner">
+          <div class="chapter__text">
+            <span class="chapter__num">#02</span>
+            <h2 id="ch2">La cocotte <em class="gold">qui fume.</em></h2>
+            <p>Moules de Zélande, marinière, au vin blanc ou à la crème. Et des frites coupées le jour même.</p>
+            <div class="chapter__meta"><span><b>24 €</b>Moules-frites</span><span><b>3</b>Sauces</span></div>
+          </div>
+          <figure class="chapter__visual">
+            <img class="chapter__img" src="assets/moules-frites.jpg" alt="Moules et frites belges">
+            <div class="chapter__art" aria-hidden="true">
+              <svg viewBox="0 0 600 380">
+                <path class="art" pathLength="1" d="M170 190 L186 290 C 192 322 408 322 414 290 L430 190"/>
+                <ellipse class="art" pathLength="1" cx="300" cy="190" rx="132" ry="24"/>
+                <g class="float"><path class="art" pathLength="1" d="M200 170 C 208 120 262 110 270 156 C 248 176 214 180 200 170 Z"/></g>
+                <g class="float"><path class="art" pathLength="1" d="M276 150 C 278 96 336 84 340 134 C 318 158 290 160 276 150 Z"/></g>
+                <g class="float"><path class="art" pathLength="1" d="M338 172 C 352 124 406 130 396 176 C 374 186 350 184 338 172 Z"/></g>
+                <g class="float"><path class="art art--soft" pathLength="1" d="M80 80 L92 160 M110 64 L116 150 M140 84 L132 160"/></g>
+                <g class="float"><path class="art art--soft" pathLength="1" d="M470 70 L520 120 M500 56 L536 100 M462 108 L506 150"/></g>
+                <g class="float"><path class="art art--soft" pathLength="1" d="M60 260 C 70 236 110 236 118 262 C 100 274 72 274 60 260 Z"/></g>
+                <ellipse class="art art--soft" pathLength="1" cx="300" cy="345" rx="200" ry="14"/>
+                <circle class="spark" cx="160" cy="70" r="2.5"/><circle class="spark" cx="450" cy="250" r="2"/><circle class="spark" cx="560" cy="180" r="2.5"/><circle class="spark" cx="40" cy="190" r="2"/>
+              </svg>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" aria-labelledby="ch3">
+      <div class="chapter__stage">
+        <div class="chapter__glow" aria-hidden="true"></div>
+        <div class="chapter__word" aria-hidden="true">Gau<em>fre</em></div>
+        <div class="wrap chapter__inner">
+          <div class="chapter__text">
+            <span class="chapter__num">#03</span>
+            <h2 id="ch3">Le sucre <em class="gold">qui caramélise.</em></h2>
+            <p>La gaufre de Liège, dorée, croquante dehors, fondante dedans. Chantilly ou chocolat belge&nbsp;: à vous de choisir.</p>
+            <div class="chapter__meta"><span><b>8 €</b>Gaufre de Liège</span><span><b>Minute</b>Servie chaude</span></div>
+          </div>
+          <figure class="chapter__visual">
+            <img class="chapter__img" src="assets/gaufre.jpg" alt="Gaufre de Liège au sucre perlé">
+            <div class="chapter__art" aria-hidden="true">
+              <svg viewBox="0 0 600 380">
+                <ellipse class="art art--soft" pathLength="1" cx="300" cy="300" rx="200" ry="40"/>
+                <g class="float">
+                  <rect class="art" pathLength="1" x="190" y="130" width="220" height="140" rx="34"/>
+                  <path class="art" pathLength="1" d="M245 134 L245 266 M300 132 L300 268 M355 134 L355 266"/>
+                  <path class="art" pathLength="1" d="M194 176 L406 176 M194 224 L406 224"/>
+                </g>
+                <g class="float"><rect class="art art--soft" pathLength="1" x="96" y="80" width="14" height="14" rx="3" transform="rotate(20 103 87)"/></g>
+                <g class="float"><rect class="art art--soft" pathLength="1" x="480" y="60" width="12" height="12" rx="3" transform="rotate(-30 486 66)"/></g>
+                <g class="float"><rect class="art art--soft" pathLength="1" x="520" y="200" width="16" height="16" rx="3" transform="rotate(10 528 208)"/></g>
+                <g class="float"><rect class="art art--soft" pathLength="1" x="70" y="220" width="12" height="12" rx="3" transform="rotate(40 76 226)"/></g>
+                <g class="float"><path class="art art--soft" pathLength="1" d="M440 30 L470 20 L476 50 L446 58 Z"/></g>
+                <circle class="spark" cx="150" cy="60" r="2.5"/><circle class="spark" cx="260" cy="40" r="2"/><circle class="spark" cx="380" cy="70" r="2.5"/><circle class="spark" cx="560" cy="120" r="2"/><circle class="spark" cx="40" cy="140" r="2"/><circle class="spark" cx="470" cy="300" r="2"/>
+              </svg>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= LA CARTE ================= -->
+  <section class="section" id="carte" aria-labelledby="carte-t">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker reveal">La carte</span><h2 class="reveal" id="carte-t" style="--i:1">Les classiques, <em class="gold">faits comme il faut.</em></h2></div>
+        <p class="reveal" style="--i:2">Une carte courte et sincère, qui suit les saisons. Demandez nos suggestions du jour en salle.</p>
+      </div>
+      <div class="reveal">
+        <div class="tabs" role="tablist" aria-label="Catégories de la carte">
+          <span class="tabs__pill" aria-hidden="true"></span>
+          <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">Plats</button>
+          <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Entrées</button>
+          <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Desserts</button>
+        </div>
+        <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0">
+          <article class="dish" style="--i:0"><h3>Carbonnade flamande<span class="tag">Maison</span></h3><span class="dish__price">21 €</span><p>Bœuf mijoté à la bière brune, pain d’épices et moutarde, frites fraîches.</p></article>
+          <article class="dish" style="--i:1"><h3>Moules-frites</h3><span class="dish__price">24 €</span><p>Moules de Zélande, marinière, au vin blanc ou à la crème.</p></article>
+          <article class="dish" style="--i:2"><h3>Vol-au-vent</h3><span class="dish__price">19 €</span><p>Poulet, boulettes et champignons en sauce crémeuse, feuilleté croustillant.</p></article>
+          <article class="dish" style="--i:3"><h3>Boulets à la liégeoise</h3><span class="dish__price">18 €</span><p>Boulettes de viande, sauce lapin au sirop de Liège, frites dorées.</p></article>
+          <article class="dish" style="--i:4"><h3>Stoemp saucisse</h3><span class="dish__price">17 €</span><p>Purée aux légumes de saison, saucisse grillée, oignons confits.</p></article>
+          <article class="dish" style="--i:5"><h3>Waterzooi de poulet</h3><span class="dish__price">20 €</span><p>La recette gantoise&nbsp;: bouillon crémeux, légumes fondants.</p></article>
+        </div>
+        <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0" hidden>
+          <article class="dish" style="--i:0"><h3>Croquettes aux crevettes<span class="tag">Maison</span></h3><span class="dish__price">14 €</span><p>Crevettes grises de la mer du Nord, citron, persil frit.</p></article>
+          <article class="dish" style="--i:1"><h3>Croquettes au fromage</h3><span class="dish__price">11 €</span><p>Fromage belge fondant, chapelure dorée.</p></article>
+          <article class="dish" style="--i:2"><h3>Tomate-crevettes</h3><span class="dish__price">15 €</span><p>Tomate farcie aux crevettes grises, mayonnaise maison.</p></article>
+          <article class="dish" style="--i:3"><h3>Planche apéritive</h3><span class="dish__price">16 €</span><p>Fromages d’abbaye, saucisson, moutarde et pickles.</p></article>
+        </div>
+        <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" tabindex="0" hidden>
+          <article class="dish" style="--i:0"><h3>Gaufre de Liège</h3><span class="dish__price">8 €</span><p>Sucre perlé caramélisé, chantilly ou chocolat belge.</p></article>
+          <article class="dish" style="--i:1"><h3>Dame blanche</h3><span class="dish__price">9 €</span><p>Glace vanille, chocolat chaud belge, crème fouettée.</p></article>
+          <article class="dish" style="--i:2"><h3>Tiramisu au spéculoos</h3><span class="dish__price">8 €</span><p>Mascarpone, café, biscuits spéculoos.</p></article>
+          <article class="dish" style="--i:3"><h3>Café gourmand</h3><span class="dish__price">10 €</span><p>Café et mini-desserts maison.</p></article>
+        </div>
+        <p class="note">Carte et prix indicatifs (maquette) — à remplacer par la carte du restaurant.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BIÈRES ================= -->
+  <section class="section" id="bieres" aria-labelledby="bieres-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="kicker reveal">Pression &amp; bouteilles</span><h2 class="reveal" id="bieres-t" style="--i:1">Santé, <em class="gold">à la belge.</em></h2></div>
+        <p class="reveal" style="--i:2">Abbayes, trappistes et lambics bruxellois. On vous conseille l’accord qui va avec votre plat.</p>
+      </div>
+      <ol class="beers">
+        <li class="beer reveal"><span class="beer__n">01</span><span class="beer__name">Blonde <em>d’abbaye</em></span><span class="beer__type">Ronde · fruitée</span></li>
+        <li class="beer reveal" style="--i:1"><span class="beer__n">02</span><span class="beer__name">Trappiste <em>brune</em></span><span class="beer__type">Maltée · profonde</span></li>
+        <li class="beer reveal" style="--i:2"><span class="beer__n">03</span><span class="beer__name">Gueuze <em>&amp; kriek</em></span><span class="beer__type">Acidulée · bruxelloise</span></li>
+        <li class="beer reveal" style="--i:3"><span class="beer__n">04</span><span class="beer__name">Blanche</span><span class="beer__type">Légère · agrumes</span></li>
+        <li class="beer reveal" style="--i:4"><span class="beer__n">05</span><span class="beer__name">Triple</span><span class="beer__type">Dorée · épicée</span></li>
+      </ol>
+      <p class="note">Sélection indicative. L’abus d’alcool est dangereux pour la santé.</p>
+    </div>
+  </section>
+
+  <!-- ================= AVIS ================= -->
+  <section class="section" id="avis" aria-labelledby="avis-t" style="padding-top:0">
+    <div class="wrap quote">
+      <h2 class="sr" id="avis-t">Avis clients</h2>
+      <div class="quote__big reveal"><span data-count="4.3">4,3</span></div>
+      <p class="quote__sub reveal" style="--i:1">sur 5 · <span data-count="640" data-dec="0">640</span> avis Google</p>
+      <div class="reviews">
+        <figure class="review reveal"><blockquote>« Une carbonnade comme chez ma grand-mère. Service chaleureux, portions généreuses. »</blockquote><footer><span>Exemple d’avis</span><span class="stars">★★★★★</span></footer></figure>
+        <figure class="review reveal" style="--i:1"><blockquote>« L’adresse idéale pour faire découvrir la cuisine belge à des amis de passage. »</blockquote><footer><span>Exemple d’avis</span><span class="stars">★★★★★</span></footer></figure>
+        <figure class="review reveal" style="--i:2"><blockquote>« Moules-frites excellentes et un très beau choix de bières. On reviendra. »</blockquote><footer><span>Exemple d’avis</span><span class="stars">★★★★☆</span></footer></figure>
+      </div>
+      <p class="note">Avis d’exemple — à remplacer par de vrais avis Google.</p>
+    </div>
+  </section>
+
+  <!-- ================= RÉSERVATION ================= -->
+  <section class="section" id="reserver" aria-labelledby="res-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="book">
+        <div>
+          <span class="kicker reveal">Réservation</span>
+          <h2 class="reveal" id="res-t" style="--i:1">Une table&nbsp;? <em class="gold">Un appel.</em></h2>
+          <a class="book__phone reveal" style="--i:2" href="tel:+32472717260">+32 472 71 72 60</a>
+          <p class="reveal" style="--i:3;color:var(--cream-2);margin-top:1.6rem;max-width:40ch">Ou préparez votre demande&nbsp;: elle s’ouvre dans un SMS prêt à envoyer. Groupes et anniversaires bienvenus.</p>
+        </div>
+        <form class="form reveal" id="form" novalidate style="--i:2">
+          <div class="field field--full"><label for="f-name">Nom</label><input id="f-name" type="text" autocomplete="name" required aria-describedby="e-name"><span class="err" id="e-name" aria-live="polite"></span></div>
+          <div class="field"><label for="f-date">Date</label><input id="f-date" type="date" required aria-describedby="e-date"><span class="err" id="e-date" aria-live="polite"></span></div>
+          <div class="field"><label for="f-time">Heure</label><select id="f-time"><option>12:00</option><option>12:30</option><option>13:00</option><option>18:30</option><option selected>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option></select></div>
+          <div class="field field--full"><label for="f-guests">Personnes</label><select id="f-guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8+</option></select></div>
+          <button class="btn btn--gold" type="submit">Envoyer la demande <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <small>La réservation est confirmée par le restaurant.</small>
+        </form>
+      </div>
+
+      <div class="infos">
+        <div class="reveal">
+          <h3>Horaires</h3>
+          <div class="status" id="status"><i></i><span>Horaires</span></div>
+          <ul class="hours" id="hours">
+            <li data-day="1"><span>Lundi</span><span>11:30 – 22:30</span></li>
+            <li data-day="2"><span>Mardi</span><span>11:30 – 22:30</span></li>
+            <li data-day="3"><span>Mercredi</span><span>11:30 – 22:30</span></li>
+            <li data-day="4"><span>Jeudi</span><span>11:30 – 22:30</span></li>
+            <li data-day="5"><span>Vendredi</span><span>11:30 – 23:00</span></li>
+            <li data-day="6"><span>Samedi</span><span>11:30 – 23:00</span></li>
+            <li data-day="0"><span>Dimanche</span><span>11:30 – 22:00</span></li>
+          </ul>
+          <p class="note" style="margin-top:.8rem">Horaires indicatifs (maquette).</p>
+        </div>
+        <div class="reveal" style="--i:1"><h3>Adresse</h3><p style="color:var(--cream-2)">Bruxelles, Belgique</p><p style="margin-top:1rem"><a class="gold" href="https://www.google.com/maps/search/?api=1&amp;query=Le%20go%C3%BBt%20belge%20Bruxelles" target="_blank" rel="noopener">Itinéraire Google Maps ↗<span class="sr"> (nouvel onglet)</span></a></p></div>
+        <div class="reveal" style="--i:2"><h3>Contact</h3><p><a href="tel:+32472717260">+32 472 71 72 60</a></p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer__big" aria-hidden="true">Le Goût <em>Belge</em></p>
+    <div class="footer__row"><span>© <span id="year"></span> Le Goût Belge · Bruxelles</span><a href="#top">Retour en haut ↑</a><span>Maquette de démonstration</span></div>
+  </div>
+</footer>
+
+<div class="callbar" id="callbar"><a class="btn btn--gold" href="tel:+32472717260">Appeler pour réserver</a></div>
+
+<script>
+(() => {
+  'use strict';
+  /* Vidéo d'accueil optionnelle (ex. 'assets/hero.mp4'). Si renseignée et
+     chargée, elle remplace l'animation dessinée et avance au scroll. */
+  const HERO_VIDEO = null;
+
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  /* Progression d'une section épinglée : 0 en haut, 1 à la fin. */
+  const progressOf = el => {
+    const r = el.getBoundingClientRect();
+    const total = r.height - innerHeight;
+    return total > 0 ? clamp(-r.top / total) : 0;
+  };
+
+  /* ================= HERO : bière dessinée en temps réel ================= */
+  const hero = $('#hero');
+  const cv = $('.hero__canvas');
+  const ctx = cv.getContext('2d');
+  const video = $('.hero__video');
+  const scenes = $$('.scene');
+  const heroWord = $('.hero__word');
+  const heroBar = $('.hero__progress');
+  let W = 0, H = 0, p = RM ? 1 : 0, heroVisible = true;
+
+  const sizeHero = () => {
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+  };
+
+  const bubbles = Array.from({ length: 70 }, () => ({ x: 90 + Math.random() * 120, y: 70 + Math.random() * 200, r: .6 + Math.random() * 1.8, v: .25 + Math.random() * .7, ph: Math.random() * 6 }));
+  const drops = [];
+
+  function glassPath(c) {
+    c.beginPath();
+    c.moveTo(60, 40);
+    c.bezierCurveTo(48, 130, 54, 212, 96, 258);
+    c.bezierCurveTo(116, 284, 184, 284, 204, 258);
+    c.bezierCurveTo(246, 212, 252, 130, 240, 40);
+  }
+
+  function drawHero(time) {
+    const c = ctx;
+    c.setTransform(DPR, 0, 0, DPR, 0, 0);
+    c.clearRect(0, 0, W, H);
+    const mobile = W < 760;
+    const s = Math.min(mobile ? W / 380 : W / 660, H / (mobile ? 880 : 520));
+    const cx = mobile ? W * .5 : W * .68;
+    const cy = mobile ? H * .29 : H * .56;
+    const fill = ease(clamp(p / .78));
+    const pouring = p > .015 && p < .8;
+    const k = time / 1000;
+
+    // halo doré
+    const gR = Math.max(W, H) * .55;
+    const g = c.createRadialGradient(cx, cy, 0, cx, cy, gR);
+    g.addColorStop(0, `rgba(226,179,86,${.10 + fill * .26})`);
+    g.addColorStop(.35, `rgba(196,122,30,${.05 + fill * .10})`);
+    g.addColorStop(1, 'rgba(10,8,6,0)');
+    c.fillStyle = g; c.fillRect(0, 0, W, H);
+
+    // rayons de lumière
+    c.save(); c.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < 5; i++) {
+      const a = .35 + i * .12 + Math.sin(k * .3 + i) * .02;
+      c.save(); c.translate(cx + 220 * s, -60); c.rotate(a);
+      const lg = c.createLinearGradient(0, 0, 0, H * 1.3);
+      lg.addColorStop(0, `rgba(246,213,142,${.06 + fill * .06})`); lg.addColorStop(1, 'rgba(246,213,142,0)');
+      c.fillStyle = lg; c.fillRect(-14 * s - i * 6, 0, 28 * s + i * 12, H * 1.3); c.restore();
+    }
+    c.restore();
+
+    c.save();
+    c.translate(cx - 150 * s, cy - 210 * s);
+    c.scale(s, s);
+
+    const surface = 272 - fill * 206;
+    const wob = x => Math.sin(x * .07 + k * 3) * (pouring ? 2.2 : .8);
+
+    // reflet au sol
+    const fg = c.createRadialGradient(150, 372, 0, 150, 372, 150);
+    fg.addColorStop(0, `rgba(226,179,86,${.12 + fill * .25})`); fg.addColorStop(1, 'rgba(226,179,86,0)');
+    c.fillStyle = fg; c.beginPath(); c.ellipse(150, 372, 150, 18, 0, 0, Math.PI * 2); c.fill();
+
+    // jet de bière
+    if (pouring) {
+      const sw = 7 * (1 - clamp((p - .6) / .2)) + .5;
+      const sg = c.createLinearGradient(146, 0, 154, 0);
+      sg.addColorStop(0, '#9A5512'); sg.addColorStop(.45, '#F6C766'); sg.addColorStop(1, '#B7701C');
+      c.fillStyle = sg;
+      const top = -(cy / s) - 40;
+      c.beginPath(); c.moveTo(150 - sw / 2, top);
+      for (let y = top; y < surface; y += 12) c.lineTo(150 - sw / 2 + Math.sin(y * .05 + k * 8) * .8, y);
+      c.lineTo(150 + sw / 2, surface);
+      for (let y = surface; y > top; y -= 12) c.lineTo(150 + sw / 2 + Math.sin(y * .05 + k * 8) * .8, y);
+      c.closePath(); c.fill();
+      if (!RM) for (let i = 0; i < 2; i++) drops.push({ x: 150 + (Math.random() - .5) * 10, y: surface - 4, vx: (Math.random() - .5) * 3.2, vy: -1.5 - Math.random() * 3, life: 1, r: .8 + Math.random() * 1.6 });
+    }
+
+    // intérieur du verre
+    c.save();
+    glassPath(c); c.closePath(); c.clip();
+    c.fillStyle = 'rgba(243,234,216,.035)'; c.fillRect(0, 0, 300, 300);
+
+    if (fill > .001) {
+      const lg = c.createLinearGradient(0, surface, 0, 280);
+      lg.addColorStop(0, '#F7CF72'); lg.addColorStop(.45, '#E3A33A'); lg.addColorStop(1, '#9C5410');
+      c.fillStyle = lg;
+      c.beginPath(); c.moveTo(0, 300);
+      for (let x = 0; x <= 300; x += 10) c.lineTo(x, surface + wob(x));
+      c.lineTo(300, 300); c.closePath(); c.fill();
+
+      const ig = c.createLinearGradient(60, 0, 240, 0);
+      ig.addColorStop(0, 'rgba(60,25,0,.35)'); ig.addColorStop(.6, 'rgba(255,230,160,0)'); ig.addColorStop(.85, 'rgba(255,240,190,.28)'); ig.addColorStop(1, 'rgba(60,25,0,.3)');
+      c.fillStyle = ig; c.fillRect(0, surface, 300, 300);
+
+      c.fillStyle = 'rgba(255,246,214,.75)';
+      bubbles.forEach(b => {
+        if (!RM) { b.y -= b.v; b.x += Math.sin(k * 2 + b.ph) * .15; }
+        if (b.y < surface + 4) { b.y = 268; b.x = 90 + Math.random() * 120; }
+        if (b.y > surface + 4) { c.beginPath(); c.arc(b.x, b.y, b.r, 0, Math.PI * 2); c.fill(); }
+      });
+
+      const foam = clamp((fill - .08) * 70, 0, 30);
+      if (foam > 0) {
+        const fTop = surface - foam;
+        const fgd = c.createLinearGradient(0, fTop, 0, surface + 6);
+        fgd.addColorStop(0, '#FFF8EA'); fgd.addColorStop(.7, '#F1E2C2'); fgd.addColorStop(1, 'rgba(230,200,140,0)');
+        c.fillStyle = fgd;
+        c.beginPath(); c.moveTo(0, surface + 8);
+        for (let x = 0; x <= 300; x += 8) c.lineTo(x, fTop + Math.sin(x * .12 + k * 1.5) * 2.2 + Math.cos(x * .31) * 1.6);
+        c.lineTo(300, surface + 8); c.closePath(); c.fill();
+      }
+    }
+    c.restore();
+
+    // couronne de mousse au-dessus du bord
+    const crown = clamp((p - .7) / .25);
+    if (crown > 0) {
+      const cr = ease(crown);
+      const fgd = c.createLinearGradient(0, 40 - 34 * cr, 0, 48);
+      fgd.addColorStop(0, '#FFFBF2'); fgd.addColorStop(1, '#EAD7B0');
+      c.fillStyle = fgd;
+      c.beginPath(); c.moveTo(58, 46); c.lineTo(60, 40 - 6 * cr);
+      const bumps = [[82, 14], [108, 22], [134, 26], [160, 28], [188, 23], [214, 17], [240, 8]];
+      bumps.forEach(([x, h], i) => {
+        const px = i ? bumps[i - 1][0] : 60;
+        c.quadraticCurveTo((px + x) / 2, 40 - (h + 10) * cr + Math.sin(k * 1.2 + i) * 1.2, x, 40 - h * cr * .7);
+      });
+      c.lineTo(242, 46); c.closePath(); c.fill();
+      const drip = clamp((p - .88) / .12);
+      if (drip > 0) {
+        c.fillStyle = '#F6EAD0';
+        c.beginPath(); c.moveTo(234, 42); c.quadraticCurveTo(248, 46 + 40 * drip, 240, 54 + 46 * drip); c.quadraticCurveTo(232, 46 + 40 * drip, 228, 44); c.fill();
+      }
+    }
+
+    // contour lumineux du verre
+    const rim = c.createLinearGradient(50, 0, 250, 0);
+    rim.addColorStop(0, 'rgba(243,234,216,.25)'); rim.addColorStop(.5, 'rgba(243,234,216,.12)'); rim.addColorStop(.9, 'rgba(255,236,190,.95)'); rim.addColorStop(1, 'rgba(255,236,190,.5)');
+    c.strokeStyle = rim; c.lineWidth = 2.2; c.lineCap = 'round';
+    glassPath(c); c.stroke();
+    c.beginPath(); c.ellipse(150, 40, 90, 5, 0, 0, Math.PI * 2); c.strokeStyle = 'rgba(243,234,216,.35)'; c.lineWidth = 1.4; c.stroke();
+    c.strokeStyle = 'rgba(243,234,216,.4)'; c.lineWidth = 2;
+    c.beginPath(); c.moveTo(146, 280); c.lineTo(146, 352); c.moveTo(154, 280); c.lineTo(154, 352); c.stroke();
+    c.beginPath(); c.ellipse(150, 360, 74, 9, 0, 0, Math.PI * 2); c.stroke();
+    c.strokeStyle = 'rgba(255,255,255,.55)'; c.lineWidth = 3.5;
+    c.beginPath(); c.moveTo(74, 70); c.bezierCurveTo(66, 140, 74, 196, 96, 234); c.stroke();
+    c.strokeStyle = 'rgba(255,255,255,.25)'; c.lineWidth = 1.5;
+    c.beginPath(); c.moveTo(226, 80); c.bezierCurveTo(232, 140, 226, 190, 210, 226); c.stroke();
+
+    // gouttelettes
+    c.fillStyle = '#F6C766';
+    for (let i = drops.length - 1; i >= 0; i--) {
+      const d = drops[i];
+      d.x += d.vx; d.y += d.vy; d.vy += .18; d.life -= .02;
+      if (d.life <= 0 || d.y > surface + 2) { drops.splice(i, 1); continue; }
+      c.globalAlpha = d.life; c.beginPath(); c.arc(d.x, d.y, d.r, 0, Math.PI * 2); c.fill();
+    }
+    c.globalAlpha = 1;
+    c.restore();
+  }
+
+  function heroFrame(time) {
+    const idx = p < .33 ? 0 : p < .72 ? 1 : 2;
+    scenes.forEach((s, i) => {
+      const on = i === idx;
+      if (s.classList.contains('is-active') !== on) { s.classList.toggle('is-active', on); s.setAttribute('aria-hidden', String(!on)); }
+    });
+    heroBar.style.setProperty('--p', p.toFixed(4));
+    heroWord.style.setProperty('--wx', `${((.5 - p) * 30).toFixed(2)}vw`);
+    if (hero.classList.contains('has-video')) {
+      if (video.duration) { const t = p * (video.duration - .05); if (Math.abs(video.currentTime - t) > .03) video.currentTime = t; }
+    } else drawHero(time);
+  }
+
+  if (HERO_VIDEO) {
+    video.src = HERO_VIDEO;
+    video.addEventListener('loadeddata', () => hero.classList.add('has-video'), { once: true });
+  }
+
+  /* ================= Chapitres ================= */
+  const chapters = $$('.chapter');
+  $$('.chapter__img').forEach(img => {
+    const fig = img.closest('.chapter__visual');
+    const empty = () => fig.classList.add('is-empty');
+    if (img.complete && !img.naturalWidth) empty();
+    img.addEventListener('error', empty);
+  });
+
+  /* ================= Poussière dorée ================= */
+  const dust = $('#dust'), dctx = dust.getContext('2d');
+  let DW = 0, DH = 0;
+  const motes = Array.from({ length: innerWidth < 760 ? 35 : 70 }, () => ({ x: Math.random(), y: Math.random(), r: .4 + Math.random() * 1.4, v: .00008 + Math.random() * .00025, a: .2 + Math.random() * .6, ph: Math.random() * 6 }));
+  const sizeDust = () => { DW = innerWidth; DH = innerHeight; dust.width = DW * DPR; dust.height = DH * DPR; };
+  function drawDust(time) {
+    dctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    dctx.clearRect(0, 0, DW, DH);
+    const k = time / 1000;
+    dctx.fillStyle = '#F6D58E';
+    motes.forEach(m => {
+      if (!RM) { m.y -= m.v; if (m.y < -.02) { m.y = 1.02; m.x = Math.random(); } }
+      dctx.globalAlpha = m.a * (.6 + .4 * Math.sin(k + m.ph));
+      dctx.beginPath(); dctx.arc((m.x + Math.sin(k * .2 + m.ph) * .01) * DW, m.y * DH, m.r, 0, Math.PI * 2); dctx.fill();
+    });
+    dctx.globalAlpha = 1;
+  }
+
+  /* ================= Boucle principale ================= */
+  let lastScroll = -1;
+  function frame(time) {
+    p = RM ? 1 : lerp(p, progressOf(hero), .12);
+    if (heroVisible) heroFrame(time);
+    if (scrollY !== lastScroll) {
+      chapters.forEach(ch => ch.style.setProperty('--p', RM ? '.6' : progressOf(ch).toFixed(4)));
+      lastScroll = scrollY;
+    }
+    drawDust(time);
+  }
+  function loop(time) { frame(time); requestAnimationFrame(loop); }
+
+  new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; }).observe(hero);
+  addEventListener('resize', () => { sizeHero(); sizeDust(); lastScroll = -1; if (RM) frame(performance.now()); });
+  sizeHero(); sizeDust();
+  if (RM) { frame(performance.now()); addEventListener('scroll', () => frame(performance.now()), { passive: true }); }
+  else requestAnimationFrame(loop);
+
+  /* ================= Nav ================= */
+  const nav = $('#nav'), callbar = $('#callbar');
+  let lastY = scrollY;
+  addEventListener('scroll', () => {
+    const y = scrollY, open = document.body.classList.contains('menu-open');
+    nav.classList.toggle('is-solid', y > innerHeight * .5);
+    nav.classList.toggle('is-hidden', !open && y > lastY && y > 300);
+    callbar.classList.toggle('is-visible', y > hero.offsetHeight - innerHeight);
+    lastY = y;
+  }, { passive: true });
+  const links = $$('.nav__links a');
+  const nio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    links.forEach(a => a.getAttribute('href') === '#' + e.target.id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach(a => { const t = $(a.getAttribute('href')); if (t) nio.observe(t); });
+
+  /* ================= Menu mobile ================= */
+  const burger = $('.burger'), drawer = $('#drawer');
+  const setMenu = open => {
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    drawer.classList.toggle('is-open', open); drawer.setAttribute('aria-hidden', String(!open));
+    document.body.classList.toggle('menu-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) setTimeout(() => $('a', drawer).focus({ preventScroll: true }), 400);
+  };
+  burger.addEventListener('click', () => setMenu(burger.getAttribute('aria-expanded') !== 'true'));
+  $$('a', drawer).forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => {
+    if (!drawer.classList.contains('is-open')) return;
+    if (e.key === 'Escape') { setMenu(false); burger.focus(); }
+    if (e.key === 'Tab') {
+      const f = [...$$('a', drawer), burger], first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* ================= Apparitions + compteurs ================= */
+  const fmt = (v, d) => v.toFixed(d).replace('.', ',');
+  const rio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('is-in'); rio.unobserve(e.target);
+  }), { rootMargin: '0px 0px -10% 0px' });
+  $$('.reveal').forEach(el => RM ? el.classList.add('is-in') : rio.observe(el));
+  if (!RM) {
+    const cio = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; cio.unobserve(e.target);
+      const el = e.target, end = parseFloat(el.dataset.count), dec = el.dataset.dec ? +el.dataset.dec : 1, t0 = performance.now();
+      const step = now => { const q = clamp((now - t0) / 1800); el.textContent = fmt(end * ease(q), dec); if (q < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }), { threshold: .6 });
+    $$('[data-count]').forEach(el => cio.observe(el));
+  }
+
+  /* ================= Onglets ================= */
+  const tabs = $$('.tab'), pill = $('.tabs__pill');
+  const movePill = t => { pill.style.width = t.offsetWidth + 'px'; pill.style.transform = `translateX(${t.offsetLeft}px)`; };
+  const select = (t, focus) => {
+    tabs.forEach(x => {
+      const on = x === t, panel = $('#' + x.getAttribute('aria-controls'));
+      x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; panel.hidden = !on;
+      if (on) { panel.classList.remove('is-entering'); void panel.offsetWidth; panel.classList.add('is-entering'); }
+    });
+    movePill(t); if (focus) t.focus();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', e => {
+      const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (!d) return;
+      e.preventDefault(); select(tabs[(i + d + tabs.length) % tabs.length], true);
+    });
+  });
+  const cur = () => tabs.find(t => t.getAttribute('aria-selected') === 'true');
+  addEventListener('resize', () => movePill(cur()));
+  if (document.fonts) document.fonts.ready.then(() => movePill(cur()));
+  movePill(cur());
+
+  /* ================= Horaires ================= */
+  const now = new Date(), row = $(`#hours [data-day="${now.getDay()}"]`);
+  if (row) {
+    row.setAttribute('aria-current', 'date');
+    const [o, c] = row.lastElementChild.textContent.split('–').map(s => { const [h, m] = s.trim().split(':').map(Number); return h * 60 + m; });
+    const mins = now.getHours() * 60 + now.getMinutes(), open = mins >= o && mins < c;
+    const hhmm = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+    $('#status').classList.toggle('is-closed', !open);
+    $('#status span').textContent = open ? `Ouvert · jusqu’à ${hhmm(c)}` : `Fermé · ouvre à ${hhmm(o)}`;
+  }
+
+  /* ================= Réservation → SMS ================= */
+  const form = $('#form'), date = $('#f-date');
+  const iso = d => new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+  date.min = iso(now); date.value = iso(now);
+  const setErr = (input, msg) => {
+    input.closest('.field').toggleAttribute('data-invalid', !!msg);
+    msg ? input.setAttribute('aria-invalid', 'true') : input.removeAttribute('aria-invalid');
+    $('#' + input.getAttribute('aria-describedby')).textContent = msg || '';
+  };
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = $('#f-name'); let bad = null;
+    if (!name.value.trim()) { setErr(name, 'Indiquez votre nom.'); bad = name; } else setErr(name);
+    if (!date.value || date.value < date.min) { setErr(date, 'Choisissez une date à partir d’aujourd’hui.'); bad = bad || date; } else setErr(date);
+    if (bad) return bad.focus();
+    const d = new Date(date.value + 'T12:00').toLocaleDateString('fr-BE', { weekday: 'long', day: 'numeric', month: 'long' });
+    const body = `Bonjour, je souhaite réserver une table pour ${$('#f-guests').value} personne(s) le ${d} à ${$('#f-time').value}. Nom : ${name.value.trim()}. Merci !`;
+    location.href = `sms:+32472717260${/iPhone|iPad|Mac/i.test(navigator.userAgent) ? '&' : '?'}body=${encodeURIComponent(body)}`;
+  });
+  $$('input', form).forEach(i => i.addEventListener('input', () => setErr(i)));
+
+  $('#year').textContent = now.getFullYear();
+})();
+</script>
+</body>
+</html>

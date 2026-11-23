@@ -1,0 +1,6 @@
+node_modules
+dist
+*.local
+.stills-tmp
+*.tsbuildinfo
+dist-neutral
